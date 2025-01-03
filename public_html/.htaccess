@@ -1,0 +1,13 @@
+# HTID:21895610: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:21895610:
+Options All -Indexes
+
+# Hide file extensions
+Options -MultiViews
+
+# Rewrite requests to remove file extensions
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]

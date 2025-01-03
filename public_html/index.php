@@ -15,12 +15,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     
     <script>
-      $(document).ready(function(){
-          setInterval(function(){
-              $("#refresh").load(window.location.href + " #refresh");
-          }, 1000);
-      });
+        $(document).ready(function(){
+            setInterval(function(){
+                $("#refresh").load(window.location.href + " #refresh");
+            }, 1000);
+        });
     </script>
+
 
     <link rel="stylesheet" href="nicepage.css" media="screen">
 <link rel="stylesheet" href="index.css" media="screen">
