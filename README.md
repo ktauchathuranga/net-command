@@ -5,17 +5,19 @@
 ---
 
 ## Features
-- Host a website to control your ESP8266 device.
+- Host a website to control your ESP8266 device inside a Docker container.
 - Store device control data in a MySQL database.
 - Simple setup and deployment process.
 - PlatformIO project for ESP8266 firmware development.
+- Easy to scale and deploy using Docker.
 
 ---
 
 ## Requirements
-- Web server (e.g., XAMPP, WAMP, or any hosting service with PHP and MySQL support).
-- ESP8266 board.
-- PlatformIO IDE for firmware upload.
+- Docker
+- Web server (handled by Docker)
+- ESP8266 board
+- PlatformIO IDE for firmware upload
 
 ---
 
@@ -26,28 +28,28 @@
 git clone https://github.com/ktauchathuranga/net-command.git
 ```
 
-### 2. Setup the Web Application
+### 2. Setup Docker Container for the Web Application
 1. Navigate to the `net-command/public_html` folder.
-2. Copy the contents of the folder to your web server's public directory.
-3. Create a database named `netcommand` in your MySQL server.
-4. Import the SQL file located in the `net-command/sql_database` folder:
+2. Build and run the Docker container:
    ```bash
-   mysql -u [username] -p netcommand < path/to/sql_file.sql
+   docker-compose up --build
    ```
+3. Once the container is running, the website will be accessible locally at `http://localhost` (or your external domain if deployed).
+4. The MySQL database will be automatically set up and populated with the necessary data during the container initialization, so there's no need to manually import the SQL file.
 
 ### 3. Configure the ESP8266 Firmware
 1. Open the `net-command/netcommand_8266` folder in PlatformIO.
 2. Update the Wi-Fi credentials and other I/O details in the firmware code.
-3. Replace the placeholder API URL with your hosted website URL.
+3. Replace the placeholder API URL with your hosted website URL (use your Docker container's IP or a domain name if hosted externally).
    ```cpp
-    const char* serverUrl = "https://YOUR-DOMAIN.com/api/command";
+    const char* serverUrl = "http://localhost/api/command";  // or use your public domain
    ```
 4. Upload the code to your ESP8266 board.
 
 ---
 
 ## How to Use
-1. Access the hosted website.
+1. Access the hosted website at `http://localhost` (or your external domain if deployed).
 2. Interact with the controls on the website to send commands to your ESP8266.
 3. The ESP8266 device will execute the commands based on the website inputs.
 
@@ -63,5 +65,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ---
 
-https://youtu.be/5gpqcNvchWo <br>
-https://www.youtube.com/shorts/QJ2y6UhsK5I
+[Watch the demo](https://youtu.be/5gpqcNvchWo)  
+[View a short version](https://www.youtube.com/shorts/QJ2y6UhsK5I)
