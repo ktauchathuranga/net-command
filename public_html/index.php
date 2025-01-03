@@ -9,7 +9,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="robots" content="noindex">
-    <title>NetCommand</title>
+    <title>Net Command</title>
     <link rel="icon" type="image/x-icon" href="images/logo.ico">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
