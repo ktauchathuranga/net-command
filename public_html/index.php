@@ -63,7 +63,7 @@
                 ?>
             </div>
           </h3>
-          <h5 class="u-align-center u-custom-font u-text u-text-palette-1-dark-1 u-text-2">NetCommand</h5>
+          <h5 class="u-align-center u-custom-font u-text u-text-palette-1-dark-1 u-text-2">Net Command</h5>
           <img class="u-image u-image-contain u-image-default u-preserve-proportions u-image-1" src="images/logo.png" alt="" data-image-width="1280" data-image-height="1280">
           <p class="u-align-center u-text u-text-3"> Experience Remote Control Revolution with NetCommand: Unleash Your Power from Anywhere<br>
           </p>
@@ -71,7 +71,7 @@
               <button type="submit" name="toggleButton" class="u-active-white u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-feature u-hover-white u-palette-1-dark-1 u-radius-41 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1">PRESS</button>
             </form>
           <p class="u-align-center u-text u-text-palette-1-dark-1 u-text-4">
-            <a class="u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="https://github.com/FantomLab" target="_blank">FantomLab Presents</a>
+            <a class="u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="https://github.com/ktauchathuranga/net-command" target="_blank">Net Command</a>
           </p>
           <quillbot-extension style="position: absolute; top: 0px; pointer-events: none;" class="u-absolute-hcenter"></quillbot-extension>
           <quillbot-extension-highlights style="position: absolute; top: 0px; pointer-events: none;" class="u-absolute-hcenter"></quillbot-extension-highlights>

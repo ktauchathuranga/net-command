@@ -1,9 +1,9 @@
 <?php
 
     $dbHost = "localhost";
-    $dbUser = "id20929160_netcommand";
-    $dbPass = "Netcommand@123";
-    $dbName = "id20929160_netcommanddb";
+    $dbUser = "root";
+    $dbPass = "";
+    $dbName = "netcommand";
 
     $conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
