@@ -25,5 +25,18 @@ services:
       - db_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: netcommand_phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8081:80"  # Access phpMyAdmin via http://localhost:8081
+    depends_on:
+      - db
+
 volumes:
   db_data:
