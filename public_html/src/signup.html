@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+</head>
+<body class="bg-gray-100 h-screen flex justify-center items-center">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold text-center mb-6">Create an Account</h2>
+        
+        <form id="signupForm" method="POST" action="signup.php">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-semibold text-gray-700">Username</label>
+                <input type="text" id="username" name="username" class="w-full p-2 border border-gray-300 rounded-md" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-semibold text-gray-700">Password</label>
+                <input type="password" id="password" name="password" class="w-full p-2 border border-gray-300 rounded-md" required>
+            </div>
+
+            <div class="mb-6">
+                <button type="submit" class="w-full p-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600">
+                    Sign Up
+                </button>
+            </div>
+
+            <p class="text-center text-sm text-gray-600">
+                Already have an account? <a href="login.html" class="text-blue-500">Login here</a>.
+            </p>
+        </form>
+    </div>
+
+    <script>
+        // Optionally handle form submission with JavaScript
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent form submission for testing
+
+            const formData = new FormData(this);
+            
+            fetch('api/signup', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => alert('Error: ' + error));
+        });
+    </script>
+    
+</body>
+</html>
