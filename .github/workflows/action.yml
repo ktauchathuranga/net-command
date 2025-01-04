@@ -22,8 +22,8 @@ jobs:
 
     # Build the Docker image
     - name: Build the Docker image
-      run: docker build ./public_html --file ./public_html/Dockerfile --tag netcommand:$(date +%s)
+      run: docker build ./public_html --file ./public_html/Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/netcommand:$(date +%s)
 
-    # Push the Docker image to Docker Hub
+    # Push the Docker image to your private Docker Hub repository
     - name: Push Docker image to Docker Hub
-      run: docker push netcommand:$(date +%s)
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/netcommand:$(date +%s)
