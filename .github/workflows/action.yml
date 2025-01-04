@@ -13,15 +13,38 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    # Log in to Docker Hub using your access token (optional if you're not pushing)
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+
     # Build the Docker image
     - name: Build the Docker image
-      run: docker build ./public_html --file ./public_html/Dockerfile --tag netcommand:$(date +%s)
+      run: |
+        IMAGE_TAG="netcommand:$(date +%s)"
+        docker build ./public_html --file ./public_html/Dockerfile --tag $IMAGE_TAG
+        echo "Built Docker image: $IMAGE_TAG"
 
-    # Save the Docker image as a tarball
+    # Save Docker image as tarball
     - name: Save Docker image as tarball
-      run: docker save netcommand:$(date +%s) | gzip > netcommand_image.tar.gz
+      run: |
+        IMAGE_TAG="netcommand:$(date +%s)"
+        docker save $IMAGE_TAG | gzip > netcommand_image.tar.gz
+        echo "Docker image saved as tarball: netcommand_image.tar.gz"
 
-    # Upload the image as an artifact
+    # Check if the file was created and not empty
+    - name: Check tarball size
+      run: |
+        if [ ! -s netcommand_image.tar.gz ]; then
+          echo "Error: Docker image tarball is empty!"
+          exit 1
+        else
+          echo "Tarball created successfully: $(ls -lh netcommand_image.tar.gz)"
+        fi
+
+    # Upload the tarball as an artifact
     - name: Upload Docker image as artifact
       uses: actions/upload-artifact@v3
       with:
