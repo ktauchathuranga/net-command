@@ -62,12 +62,12 @@ git clone https://github.com/ktauchathuranga/net-command.git
 1. **Login to obtain a JWT Token**:
    To authenticate users before accessing the API, they must first log in by sending their username and password. Here's how to obtain a JWT token:
    
-   **API Endpoint**: `POST /api/login.php`  
+   **API Endpoint**: `POST /api/login`  
    **Parameters**: `username`, `password`  
    
    **Example request** using `curl`:
    ```bash
-   curl -X POST -d "username=your_user&password=your_pass" http://localhost/api/login.php
+   curl -X POST -d "username=your_user&password=your_pass" http://localhost/api/login
    ```
 
    **Response**:
@@ -80,12 +80,12 @@ git clone https://github.com/ktauchathuranga/net-command.git
 2. **Accessing the Command API**:
    To interact with the command API, users must include the JWT token in the `Authorization` header. For example:
 
-   **API Endpoint**: `POST /api/command.php`  
+   **API Endpoint**: `POST /api/command`  
    **Parameters**: `readstate`, `writestate`  
    
    **Example request** using `curl`:
    ```bash
-   curl -X POST -H "Authorization: Bearer YOUR_JWT_TOKEN" -d "readstate=1" http://localhost/api/command.php
+   curl -X POST -H "Authorization: Bearer YOUR_JWT_TOKEN" -d "readstate=1" http://localhost/api/command
    ```
 
    - Replace `YOUR_JWT_TOKEN` with the token you received after login.
