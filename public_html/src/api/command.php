@@ -1,36 +1,52 @@
 <?php
     require_once "../database.php";
 
-    if (isset($_POST["readstate"])) {
-        $readWhere = $_POST["readstate"];
-        $sql = "SELECT * FROM toggle_state WHERE id = $readWhere";
-        $results = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($results);
+    header('Content-Type: application/json');
 
-        if ($row["status"] == 1) {
-            echo "#1";
-        } elseif ($row["status"] == 0) {
-            echo "#0";
-        } else {
-            echo "#error";
-        }
+    function getToggleState($conn, $id) {
+        $stmt = $conn->prepare("SELECT * FROM toggle_state WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
-    if (isset($_POST["writestate"])) {
-        $writeWhere = $_POST["writestate"];
-        $sql = "SELECT * FROM toggle_state WHERE id = $writeWhere";
-        $results = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($results);
-
-        if ($row["status"] == 1) {
-            $write = mysqli_query($conn, "UPDATE toggle_state SET `status` = 0 WHERE `id` = $writeWhere");
-            echo "#0";
-        } elseif ($row["status"] == 0) {
-            $write = mysqli_query($conn, "UPDATE toggle_state SET `status` = 1 WHERE `id` = $writeWhere");
-            echo "#1";
-        } else {
-            echo "#error";
-        }
+    function updateToggleState($conn, $id, $status) {
+        $stmt = $conn->prepare("UPDATE toggle_state SET `status` = ? WHERE `id` = ?");
+        $stmt->bind_param("ii", $status, $id);
+        return $stmt->execute();
     }
 
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $response = ["status" => "error", "message" => "Invalid request"];
+
+        if (isset($_POST["readstate"])) {
+            $id = intval($_POST["readstate"]);
+            $row = getToggleState($conn, $id);
+
+            if ($row) {
+                $response = ["status" => "success", "state" => $row["status"]];
+            } else {
+                $response = ["status" => "error", "message" => "ID not found"];
+            }
+        } elseif (isset($_POST["writestate"])) {
+            $id = intval($_POST["writestate"]);
+            $row = getToggleState($conn, $id);
+
+            if ($row) {
+                $newStatus = $row["status"] == 1 ? 0 : 1;
+                if (updateToggleState($conn, $id, $newStatus)) {
+                    $response = ["status" => "success", "new_state" => $newStatus];
+                } else {
+                    $response = ["status" => "error", "message" => "Update failed"];
+                }
+            } else {
+                $response = ["status" => "error", "message" => "ID not found"];
+            }
+        }
+
+        echo json_encode($response);
+    } else {
+        echo json_encode(["status" => "error", "message" => "Invalid HTTP method"]);
+    }
 ?>
