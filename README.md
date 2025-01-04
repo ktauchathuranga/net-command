@@ -112,3 +112,8 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 [Watch the demo](https://youtu.be/5gpqcNvchWo)  
 [View a short version](https://www.youtube.com/shorts/QJ2y6UhsK5I)
+
+---
+
+- **`docker-compose down`**: Stops and removes containers, networks, but **keeps named volumes**.
+- **`docker-compose down -v`**: Stops and removes containers, networks, and **also deletes named volumes**.
