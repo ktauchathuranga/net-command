@@ -25,5 +25,5 @@ jobs:
           context: ./public_html
           push: true
           tags: |
-            akoskm/my-image:latest
+            ktauchathuranga/netcommand:latest
             ghcr.io/${{ github.repository_owner }}/netcommand:latest
