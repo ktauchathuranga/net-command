@@ -46,8 +46,8 @@ git clone https://github.com/ktauchathuranga/net-command.git
 2. Update the Wi-Fi credentials and other I/O details in the firmware code.
 3. Replace the placeholder API URL with your hosted website URL (use your Docker container's IP or a domain name if hosted externally):
    ```cpp
-   const char* ssid = "YOUR-WIFI-NAME";
-   const char* password = "YOUR-WIFI-PASSWORD";
+   const char* ssid = "YOUR_WIFI_NAME";
+   const char* password = "YOUR_WIFI_PASSWORD";
    const char* serverUrl = "http://localhost/api/command";  // or use your public domain
    const String jwtToken = "YOUR_JWT_TOKEN"; // Set your JWT token here
    ```
