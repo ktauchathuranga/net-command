@@ -5,6 +5,7 @@
 const char* ssid = "YOUR-WIFI-NAME";
 const char* password = "YOUR-WIFI-PASSWORD";
 const char* serverUrl = "https://YOUR-DOMAIN.com/api/command";
+const String jwtToken = "YOUR_JWT_TOKEN"; // Set your JWT token here
 
 void setup() {
   Serial.begin(115200);
@@ -28,6 +29,8 @@ void loop() {
 
     http.begin(client, serverUrl);
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+    http.addHeader("Authorization", "Bearer " + jwtToken); // Add the JWT token here
+
     String payload = "readstate=1";
 
     int statusCode = http.POST(payload);
