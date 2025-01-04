@@ -22,8 +22,8 @@ jobs:
 
     # Build the Docker image
     - name: Build the Docker image
-      run: docker build ./public_html --file ./public_html/Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build ./public_html --file ./public_html/Dockerfile --tag netcommand:$(date +%s)
 
     # Push the Docker image to Docker Hub
     - name: Push Docker image to Docker Hub
-      run: docker push my-image-name:$(date +%s)
+      run: docker push netcommand:$(date +%s)
