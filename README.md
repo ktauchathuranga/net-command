@@ -33,7 +33,7 @@ git clone https://github.com/ktauchathuranga/net-command.git
 ```
 
 ### 2. Setup Docker Container for the Web Application
-1. Navigate to the `net-command/public_html` folder.
+1. Navigate to the `net-command/public_web` folder.
 2. Build and run the Docker container:
    ```bash
    docker-compose up --build
