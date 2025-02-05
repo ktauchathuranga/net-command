@@ -21,6 +21,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./public_html
+          context: ./public_web
           push: true
           tags: ktauchathuranga/netcommand:latest
